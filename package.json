@@ -1,0 +1,30 @@
+{
+  "name": "bountiesbot",
+  "version": "0.0.1",
+  "description": "Bounties you can work on today!",
+  "main": "handler.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeluggage/bountiesbot.git"
+  },
+  "keywords": [
+    "bounties",
+    "serverless",
+    "python",
+    "azure",
+    "blockchain",
+    "ethereum"
+  ],
+  "author": "Matias Forbord",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codeluggage/bountiesbot/issues"
+  },
+  "homepage": "https://github.com/codeluggage/bountiesbot#readme",
+  "devDependencies": {
+    "serverless-python-requirements": "^4.2.5"
+  }
+}

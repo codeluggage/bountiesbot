@@ -1,0 +1,26 @@
+service: bountiesbot
+
+provider:
+  name: aws
+  runtime: python3.6
+  location: us-east-1
+
+plugins:
+  - serverless-python-requirements
+
+custom: 
+  variables: ${file(./variables.yml)}
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - package.json
+    - .git/**
+
+functions:
+  scheduled:
+    handler: handler.tweet_bounty
+    environment: ${self:custom.variables}
+    events:
+       - schedule: rate(1 minute)
