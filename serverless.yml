@@ -4,6 +4,7 @@ provider:
   name: aws
   runtime: python3.6
   location: us-east-1
+  memorySize: 256
 
 plugins:
   - serverless-python-requirements
