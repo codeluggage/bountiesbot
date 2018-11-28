@@ -25,7 +25,7 @@ def get_latest_tweet(twitter_api):
 
 
 def get_latest_bounty_id(tweet):
-    return int(tweet.entities['urls'][0]['display_url'].split('/')[-1])
+    return int(tweet.entities['urls'][-1]['display_url'].split('/')[-1])
 
 
 # A valid bounty can't be too new, or its unfurling is not available yet.
