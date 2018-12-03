@@ -25,11 +25,25 @@ def get_latest_tweet(twitter_api):
 
 
 def get_latest_bounty_id(tweet):
-    return int(tweet.entities['urls'][-1]['display_url'].split('/')[-1])
+    pattern = 'explorer.bounties.network/bounty/'
+    twitter_pattern = 'twitter.com/i/web/status/'
+
+    # Ideally, we find the bounty URL and split off the end to get the ID.
+    for url in tweet.entities['urls']:
+        split = url['expanded_url'].split(pattern)
+        if len(split) > 1:
+            return int(split[-1])
+
+    # Often, Twitter hides the URL from us and we have to get creative.
+    # Here, we follow the link to the full status, and find the ID in the page.
+    for url in tweet.entities['urls']:
+        if url['expanded_url'].find(twitter_pattern) != -1:
+            page = requests.get(url['expanded_url'])
+            return int(page.text.split(pattern)[1].split('"')[0])
 
 
 # A valid bounty can't be too new, or its unfurling is not available yet.
-# Only bounties older than 1 minute are selected
+# Only bounties older than 1 minute are selected.
 def get_bounties(requests, url, bounty_id):
     res = []
     bounties = requests.get(url=url, params={
